@@ -1,0 +1,34 @@
+####### Destination number abd call by agent call out per day Like 0 ############## 
+select 
+Extension,
+CallerID,
+CalledID,
+count(CallerID) As Call_Out_Per_day,
+format(Duration, '00:00:00') As Duration,
+StartTimeLocal,
+StopTimeLocal,
+(CASE Direction WHEN '1' THEN 'CALL IN' WHEN '2' THEN 'CALL OUT' END) As Direction
+from RecordNewDB.dbo.Record
+where Extension = Extension and Direction = '2' and CalledID Like '0%' and convert(date, StopTimeLocal, 103) = CAST(GETDATE() As Date)
+group by Extension,CallerID,CalledID,Duration,Direction,StartTimeLocal,StopTimeLocal
+
+
+
+
+
+####### Destination number abd call by agent call out per day Like 2 ############## 
+select 
+Extension,
+CallerID,
+CalledID,
+count(CallerID) As Call_Out_Per_day,
+format(Duration, '00:00:00') As Duration,
+StartTimeLocal,
+StopTimeLocal,
+(CASE Direction WHEN '1' THEN 'CALL IN' WHEN '2' THEN 'CALL OUT' END) As Direction
+from RecordNewDB.dbo.Record
+where Extension = Extension and Direction = '2' and CalledID Like '2%' and convert(date, StopTimeLocal, 103) = CAST(GETDATE() As Date)
+group by Extension,CallerID,CalledID,Duration,Direction,StartTimeLocal,StopTimeLocal
+
+
+

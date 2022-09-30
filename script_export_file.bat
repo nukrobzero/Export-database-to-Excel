@@ -1,0 +1,1 @@
+"C:\Users\NUKROB-NT\Desktop\export_excel\script.py"
